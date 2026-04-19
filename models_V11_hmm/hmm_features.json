@@ -1,0 +1,10 @@
+{
+  "features": [
+    "vix",
+    "vix_chg_5d",
+    "ret_20d",
+    "vol_5d",
+    "adx",
+    "trend_score"
+  ]
+}

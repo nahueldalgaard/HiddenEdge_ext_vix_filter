@@ -1,0 +1,102 @@
+{
+  "train_period": {
+    "start": "2000-01-01",
+    "end": "2018-12-31"
+  },
+  "test_period": {
+    "start": "2019-01-01",
+    "end": "2020-01-01"
+  },
+  "hmm_n_components": 9,
+  "hmm_features": [
+    "vix",
+    "vix_chg_5d",
+    "ret_20d",
+    "vol_5d",
+    "adx",
+    "trend_score"
+  ],
+  "regimes": {
+    "HIGH_VOL_BULL": {
+      "hmm_id": 0,
+      "threshold_sps": 0.6,
+      "threshold_scs": 0.55,
+      "position_multiplier": 1,
+      "vix_avg": 20.88,
+      "trend_avg": 1.0209,
+      "days_train": 475
+    },
+    "MED_VOL_BEAR": {
+      "hmm_id": 1,
+      "threshold_sps": 0.6,
+      "threshold_scs": 0.55,
+      "position_multiplier": 1,
+      "vix_avg": 16.18,
+      "trend_avg": 0.9932,
+      "days_train": 563
+    },
+    "CRISIS_BEAR": {
+      "hmm_id": 2,
+      "threshold_sps": 0.6,
+      "threshold_scs": 0.55,
+      "position_multiplier": 1,
+      "vix_avg": 41.77,
+      "trend_avg": 0.947,
+      "days_train": 277
+    },
+    "LOW_VOL_BULL": {
+      "hmm_id": 3,
+      "threshold_sps": 0.65,
+      "threshold_scs": 0.55,
+      "position_multiplier": 1,
+      "vix_avg": 12.74,
+      "trend_avg": 1.0083,
+      "days_train": 846
+    },
+    "HIGH_VOL_BEAR": {
+      "hmm_id": 4,
+      "threshold_sps": 0.6,
+      "threshold_scs": 0.55,
+      "position_multiplier": 1,
+      "vix_avg": 24.87,
+      "trend_avg": 0.9881,
+      "days_train": 447
+    },
+    "LOW_VOL_BULL_5": {
+      "hmm_id": 5,
+      "threshold_sps": 0.6,
+      "threshold_scs": 0.55,
+      "position_multiplier": 1,
+      "vix_avg": 13.38,
+      "trend_avg": 1.0213,
+      "days_train": 739
+    },
+    "HIGH_VOL_BEAR_6": {
+      "hmm_id": 6,
+      "threshold_sps": 0.6,
+      "threshold_scs": 0.55,
+      "position_multiplier": 1,
+      "vix_avg": 20.5,
+      "trend_avg": 0.9868,
+      "days_train": 604
+    },
+    "MED_VOL_BULL": {
+      "hmm_id": 7,
+      "threshold_sps": 0.6,
+      "threshold_scs": 0.55,
+      "position_multiplier": 1,
+      "vix_avg": 18.53,
+      "trend_avg": 1.0133,
+      "days_train": 509
+    },
+    "CRISIS_BULL": {
+      "hmm_id": 8,
+      "threshold_sps": 0.6,
+      "threshold_scs": 0.55,
+      "position_multiplier": 1,
+      "vix_avg": 31.26,
+      "trend_avg": 1.0072,
+      "days_train": 319
+    }
+  }
+}

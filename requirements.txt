@@ -1,0 +1,22 @@
+# HiddenEdge — Signal Generator V11 HMM
+# Python 3.11
+#
+# VERSIONES PINNEADAS — no usar >= para evitar cambios de comportamiento silenciosos
+# Versiones verificadas en produccion (PC local) el 2026-02-28
+#
+# WORKFLOW: instalar en este orden:
+#   pip install --upgrade pip setuptools wheel
+#   pip install numpy==2.1.3
+#   pip install hmmlearn==0.3.3
+#   pip install -r requirements.txt
+
+numpy==2.1.3
+pandas==2.2.3
+yfinance==1.0
+scikit-learn==1.8.0
+lightgbm==4.6.0
+hmmlearn==0.3.3
+requests==2.32.3
+
+
+
