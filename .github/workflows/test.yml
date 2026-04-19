@@ -1,0 +1,33 @@
+name: Test Webhooks
+
+on:
+  workflow_dispatch:  # Solo manual
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment: webhooks OA HMM
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      
+      - name: Install dependencies
+        run: |
+          pip install requests python-dotenv
+      
+      - name: Test All Webhooks
+        env:
+          OA_WEBHOOK_SPS: ${{ secrets.OA_WEBHOOK_SPS }}
+          OA_WEBHOOK_SCS: ${{ secrets.OA_WEBHOOK_SCS }}
+          OA_WEBHOOK_SPS_2X: ${{ secrets.OA_WEBHOOK_SPS_2X }}
+          OA_WEBHOOK_SCS_2X: ${{ secrets.OA_WEBHOOK_SCS_2X }}
+        run: |
+          # Opción 1 automáticamente (test all con delay)
+          echo "1" | python test_webhooks.py
+
+          
