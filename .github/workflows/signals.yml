@@ -39,4 +39,4 @@ jobs:
           OA_WEBHOOK_SPS_2X: ${{ secrets.OA_WEBHOOK_SPS_2X }}
           OA_WEBHOOK_SCS_2X: ${{ secrets.OA_WEBHOOK_SCS_2X }}
         run: |
-          python generate_signal_V11B_HMM_v1.py
+          python signal_generator_V11_HMM_empirical_vix.py
