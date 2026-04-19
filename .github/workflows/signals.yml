@@ -1,0 +1,42 @@
+name: HiddenEdge_Run
+on:
+  schedule:
+    # 07:00 AM Argentina (UTC-3)
+    - cron: "0 10 * * *"
+  workflow_dispatch: # Permite ejecutarlo manualmente para probar
+
+jobs:
+  run-signal:
+    runs-on: ubuntu-latest
+
+    # Asegúrate de que en Settings > Environments el nombre sea "production"
+    # o el que elijas, pero sin espacios preferentemente.
+    environment: webhooks OA HMM 
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: 'pip' # Acelera ejecuciones futuras
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install --upgrade setuptools wheel
+          pip install numpy==2.1.3
+          pip install hmmlearn==0.3.3
+          pip install -r requirements.txt
+
+      - name: Run daily signal generator
+        # ESTA SECCIÓN ES LA QUE FALTA: Mapea los secretos del environment a variables de entorno
+        env:
+          OA_WEBHOOK_SPS: ${{ secrets.OA_WEBHOOK_SPS }}
+          OA_WEBHOOK_SCS: ${{ secrets.OA_WEBHOOK_SCS }}
+          OA_WEBHOOK_SPS_2X: ${{ secrets.OA_WEBHOOK_SPS_2X }}
+          OA_WEBHOOK_SCS_2X: ${{ secrets.OA_WEBHOOK_SCS_2X }}
+        run: |
+          python generate_signal_V11B_HMM_v1.py
