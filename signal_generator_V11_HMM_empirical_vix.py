@@ -399,13 +399,16 @@ def generate_signal():
         print_summary(summary); return
     print(f"  {len(models)} modelos cargados")
 
-    # Datos desde OOS_START — en 2026 hay 3+ anos de historia, warmup suficiente
-    print(f"\nDescargando datos desde {OOS_START}...")
+    # Datos con warmup de 400 días antes de OOS_START (igual que el analyzer)
+    # para que el Viterbi HMM tenga exactamente la misma historia
+    print(f"\nDescargando datos (400d warmup pre-{OOS_START})...")
     now = datetime.now()
+    oos_dt       = datetime.strptime(OOS_START, "%Y-%m-%d")
+    download_start = oos_dt - pd.Timedelta(days=400)
     try:
-        spx = normalize(yf.download("^GSPC", start=OOS_START,
+        spx = normalize(yf.download("^GSPC", start=download_start.strftime("%Y-%m-%d"),
                                     end=now.strftime("%Y-%m-%d"), progress=False))
-        vix = normalize(yf.download("^VIX",  start=OOS_START,
+        vix = normalize(yf.download("^VIX",  start=download_start.strftime("%Y-%m-%d"),
                                     end=now.strftime("%Y-%m-%d"), progress=False))
         if spx is None or len(spx) == 0:
             summary["reason"] = "SPX download failed"; print_summary(summary); return
